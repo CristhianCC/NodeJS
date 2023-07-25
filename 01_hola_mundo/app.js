@@ -1,5 +1,1 @@
-let nombre = 'Cristhian';
-console.log(nombre);
-
-nombre = 'Icíar';
-console.log(nombre);
+console.log('Hola Mundo');
