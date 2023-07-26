@@ -31,7 +31,7 @@ const getEmpleado = (id, mostrarErrorEmpleado) => {
     } else {
         mostrarErrorEmpleado(`Empleado con id ${id} no existe.`);
     }
-}
+};
 
 const getSalario = (id, mostrarErrorSalario) => {
 
@@ -60,4 +60,4 @@ getEmpleado(1, (err, empleado) => {
 
         console.log('El empleado:', empleado, 'tiene un salario de: ', salario);
     });
-})
+});
