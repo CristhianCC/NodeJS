@@ -38,7 +38,7 @@ const getSalario = (id) => {
     });
 };
 
-const id = 4;
+const id = 2;
 
 /*
  getEmpleado(1)
@@ -50,10 +50,21 @@ const id = 4;
  .catch(err => console.log(err));
  */
 
-getEmpleado(id)
+/*getEmpleado(id)
     .then(empleado => {
         getSalario(id)
             .then(salario => {
                 console.log('El empleado:', empleado, 'tiene un salario de: ', salario);
             }).catch( err => console.log(err))
-    }).catch( err => console.log(err));
+    }).catch( err => console.log(err));*/
+
+let nombre;
+
+getEmpleado(id)
+    .then( empleado => {
+        nombre = empleado;
+        return getSalario(id);
+    })
+    .then( salario => console.log('El empleado:', nombre, 'tiene un salario de: ', salario))
+    .catch( err => console.log (err));
+
