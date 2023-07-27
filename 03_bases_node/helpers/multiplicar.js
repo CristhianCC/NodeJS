@@ -1,5 +1,5 @@
 const fs = require('fs');
-const crearArchivo = async(base = 5) => {
+const crearArchivo = async (base = 5) => {
     try {
         console.log('====================');
         console.log(`   Tabla del: ${base}`);
@@ -14,12 +14,12 @@ const crearArchivo = async(base = 5) => {
 
         console.log(salida);
 
-        return`tabla_${base}.txt`;
+        return `tabla_${base}.txt`;
     } catch (err) {
         throw err;
     }
-}
+};
 
 module.exports = {
     crearArchivo
-}
+};
