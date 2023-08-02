@@ -1,4 +1,19 @@
 const fs = require('fs');
+const colors = require('colors');
+
+colors.setTheme({
+    silly: 'rainbow',
+    input: 'grey',
+    verbose: 'cyan',
+    prompt: 'grey',
+    info: 'green',
+    data: 'cyan',
+    help: 'grey',
+    warn: 'yellow',
+    debug: 'blue',
+    error: 'red'
+});
+
 const crearArchivo = async (base = 5, listar) => {
     try {
 
@@ -11,10 +26,10 @@ const crearArchivo = async (base = 5, listar) => {
         fs.writeFileSync(`tabla_${base}.txt`, salida);
 
         if (listar) {
-            console.log('====================');
-            console.log(`   Tabla del: ${base}`);
-            console.log('====================');
-            console.log(salida);
+            console.log('===================='.silly);
+            console.log(`   Tabla del: `.silly, colors.verbose(base));
+            console.log('===================='.silly);
+            console.log(salida.rainbow);
         }
 
         return `tabla_${base}.txt`;
