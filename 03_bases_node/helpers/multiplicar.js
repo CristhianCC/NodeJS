@@ -14,12 +14,12 @@ colors.setTheme({
     error: 'red'
 });
 
-const crearArchivo = async (base = 5, listar) => {
+const crearArchivo = async (base=5, listar, hasta=10) => {
     try {
 
 
         let salida = '';
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= hasta; i++) {
             salida += `${base} x ${i} = ${base * i}\n`;
         }
 
