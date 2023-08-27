@@ -1,7 +1,16 @@
-require('colors');
-const { inquirerMenu, pausa, leerInput } = require('./helpers/inquirer');
+require( 'colors' );
+const {
+    inquirerMenu,
+    pausa,
+    leerInput,
+    listarTareasBorrar,
+    confirm
+} = require( './helpers/inquirer' );
 const Tareas = require( './models/tareas' );
-const { leerDB, guardarDB } = require( './helpers/guardarArchivo' );
+const {
+    leerDB,
+    guardarDB
+} = require( './helpers/guardarArchivo' );
 console.clear();
 
 const main = async () => {
@@ -10,39 +19,47 @@ const main = async () => {
 
     const tareasDB = leerDB();
 
-    if (tareasDB) {
-        tareas.cargarTareasFromArray(tareasDB);
+    if ( tareasDB ) {
+        tareas.cargarTareasFromArray( tareasDB );
     }
 
     do {
         opt = await inquirerMenu();
 
-        switch(opt) {
+        switch ( opt ) {
             case '1':
-                const desc = await leerInput('Descripción: ');
-                tareas.crearTarea(desc);
-            break;
+                const desc = await leerInput( 'Descripción: ' );
+                tareas.crearTarea( desc );
+                break;
             case '2':
                 tareas.listadoCompleto();
-            break;
+                break;
             case '3':
-                tareas.listarPendientesCompletadas(true);
-            break;
+                tareas.listarPendientesCompletadas( true );
+                break;
             case '4':
-                tareas.listarPendientesCompletadas(false);
-            break;
+                tareas.listarPendientesCompletadas( false );
+                break;
             case '5':
-            break;
+                break;
             case '6':
-            break;
+                const id = await listarTareasBorrar( tareas.listadoArr );
+                if ( id !== '0' ) {
+                    const ok = await confirm( '¿Estás seguro?' );
+                    if ( ok ) {
+                        console.log( 'Tarea borrada: ' + tareas._listado[id].desc );
+                        tareas.borrarTarea( id );
+                    }
+                }
+                break;
             case '0':
-            break;
+                break;
         }
 
         guardarDB( tareas.listadoArr );
 
         await pausa();
-    } while ( opt !== '0')
+    } while ( opt !== '0' )
 
 }
 
