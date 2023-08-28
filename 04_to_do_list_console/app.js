@@ -12,7 +12,6 @@ const {
     leerDB,
     guardarDB
 } = require( './helpers/guardarArchivo' );
-console.clear();
 
 const main = async () => {
     let opt = '';
@@ -25,6 +24,7 @@ const main = async () => {
     }
 
     do {
+        console.clear();
         opt = await inquirerMenu();
 
         switch ( opt ) {
