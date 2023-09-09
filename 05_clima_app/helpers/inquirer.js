@@ -1,6 +1,6 @@
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
 
-require('colors')
+require('colors');
 
 const preguntas = [
   {
@@ -18,17 +18,17 @@ const preguntas = [
         value: 0,
         name: `${'0.'.magenta} Salir`,
       }],
-  }]
+  }];
 
 const inquirerMenu = async () => {
-  console.log('========================'.green)
-  console.log(' Seleccione una opción'.white)
-  console.log('========================\n'.green)
+  console.log('========================'.green);
+  console.log(' Seleccione una opción'.white);
+  console.log('========================\n'.green);
 
-  const { opcion } = await inquirer.prompt(preguntas)
+  const {opcion} = await inquirer.prompt(preguntas);
 
-  return opcion
-}
+  return opcion;
+};
 
 const pausa = async () => {
   const question = [
@@ -36,12 +36,12 @@ const pausa = async () => {
       type: 'input',
       name: 'enter',
       message: `Presione ${'enter'.green} para continuar`,
-    }]
+    }];
 
-  console.log('\n')
+  console.log('\n');
 
-  await inquirer.prompt(question)
-}
+  await inquirer.prompt(question);
+};
 
 const leerInput = async (message) => {
   const question = [
@@ -49,33 +49,33 @@ const leerInput = async (message) => {
       type: 'input',
       name: 'desc',
       message,
-      validate (value) {
+      validate(value) {
         if (value.length === 0) {
-          return 'Por favor ingrese un valor'
+          return 'Por favor ingrese un valor';
         }
-        return true
+        return true;
       },
-    }]
+    }];
 
-  console.log('\n')
+  console.log('\n');
 
-  const { desc } = await inquirer.prompt(question)
-  return desc
-}
+  const {desc} = await inquirer.prompt(question);
+  return desc;
+};
 
 const listarTareasBorrar = async (tareas = []) => {
   const choices = tareas.map((tarea, i) => {
-    const index = `${i + 1}`.green
+    const index = `${i + 1}`.green;
     return {
       value: tarea.id,
       name: `${index} ${tarea.desc}`,
-    }
-  })
+    };
+  });
 
   choices.unshift({
     value: '0',
     name: '0.'.green + ' Cancelar',
-  })
+  });
 
   const preguntas = [
     {
@@ -83,11 +83,11 @@ const listarTareasBorrar = async (tareas = []) => {
       name: 'id',
       message: 'Borrar',
       choices,
-    }]
+    }];
 
-  const { id } = await inquirer.prompt(preguntas)
-  return id
-}
+  const {id} = await inquirer.prompt(preguntas);
+  return id;
+};
 
 const confirm = async (message = '') => {
   const question = [
@@ -95,21 +95,21 @@ const confirm = async (message = '') => {
       type: 'confirm',
       name: 'ok',
       message,
-    }]
+    }];
 
-  const { ok } = await inquirer.prompt(question)
-  return ok
-}
+  const {ok} = await inquirer.prompt(question);
+  return ok;
+};
 
 const mostrarListadoCheckList = async (tareas = []) => {
   const choices = tareas.map((tarea, i) => {
-    const index = `${i + 1}`.green
+    const index = `${i + 1}`.green;
     return {
       value: tarea.id,
       name: `${index} ${tarea.desc}`,
       checked: !!( tarea.completadoEn ),
-    }
-  })
+    };
+  });
 
   const preguntas = [
     {
@@ -117,11 +117,11 @@ const mostrarListadoCheckList = async (tareas = []) => {
       name: 'ids',
       message: 'Seleccione: \n',
       choices,
-    }]
+    }];
 
-  const { ids } = await inquirer.prompt(preguntas)
-  return ids
-}
+  const {ids} = await inquirer.prompt(preguntas);
+  return ids;
+};
 
 module.exports = {
   inquirerMenu,
@@ -130,4 +130,4 @@ module.exports = {
   listarTareasBorrar,
   confirm,
   mostrarListadoCheckList,
-}
+};
