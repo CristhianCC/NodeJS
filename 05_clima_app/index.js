@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const {
   inquirerMenu,
   pausa,
@@ -18,8 +20,8 @@ const main = async () => {
       case 1:
         const lugar = await leerInput('Ciudad: ');
         await busquedas.ciudad(lugar);
-
         console.log('\n Información de la ciudad\n'.green);
+
         console.log('Ciudad:');
         console.log('Lat:');
         console.log('Lng:');
@@ -35,6 +37,5 @@ const main = async () => {
 
   } while (opt !== 0);
 };
-
 
 main();

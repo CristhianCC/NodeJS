@@ -1,4 +1,3 @@
-const {get} = require('axios');
 const axios = require('axios');
 
 class Busquedas {
@@ -11,7 +10,7 @@ class Busquedas {
   get paramsMapbox() {
     return {
       'language': 'es',
-      'access_token': '',
+      'access_token': process.env['MAPBOX_KEY'] || '',
       'limit': 5,
     };
   }
