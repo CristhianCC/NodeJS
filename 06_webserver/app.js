@@ -1,22 +1,19 @@
-const http = require('http');
-http.createServer((req, res) => {
+const express = require('express');
+const app = express();
+const port = 8080;
 
-  // res.writeHead((200, { 'Content-Type': 'application/json'});
-  res.setHeader('Content-Disposition', 'attachment; filename=lista.csv');
-  res.writeHead(200, {'Content-Type': 'application/csv'});
+app.get('/', (req, res) => {
+  res.send('Home page');
+});
 
-  /*const persona = {
-    id: 1,
-    nombre: 'Cristhian'
-  };*/
+app.get('/hola-mundo', (req, res) => {
+  res.send('Hola Mundo en su ruta');
+});
 
-  // res.write(JSON.stringify(persona));
-  res.write('id, nombre\n');
-  res.write('1, Cris\n');
-  res.write('2, Ici\n');
-  res.write('3, Leo\n');
-  res.end();
+app.get('*', (req, res) => {
+  res.send('404 | Page not found');
+});
 
-}).listen(8080);
-
-console.log('Escuchando el puerto', 8080);
+app.listen(port, () => {
+  console.log(`Example listening the port ${port}`);
+});
